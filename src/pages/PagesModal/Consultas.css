@@ -1,0 +1,15 @@
+.contenedor{
+    height: 100%;
+}
+.especificaciones{
+    background-color: #ffffff;
+    display: flex;
+    height: 3.5rem;
+    border-bottom: 1px solid #C2C2C9;
+    justify-content: space-between;
+}
+h4{
+    margin: 20px 60px 15px 30px;
+    padding-left: 30px;
+    border-left: 6px solid #2ac227;
+}
