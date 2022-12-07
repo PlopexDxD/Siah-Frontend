@@ -1,0 +1,33 @@
+.list__menu{
+    margin-top: 2.1875rem;
+    display: flex;
+    flex-direction: column;
+}
+.container__menu{
+    padding-left: 1.4375rem;
+    padding-top: 2.1875rem ;
+    box-shadow: 4px 4px 10px 4px rgba(0, 0, 0, 0.05);
+    z-index: 2;
+}
+li{ 
+    list-style: none;
+}
+li>a{
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    gap: 0.625rem;
+    padding-bottom: 0.9375rem;
+}
+.active::before{
+    content: "";
+    background-color: #2AC227;
+    width: 10px ;
+    height: 24px;
+    position: absolute;
+    left: 0;
+}
+.title__menu{
+    padding-bottom: 40px ;
+    border-bottom: 1px solid #2AC227;
+}

@@ -1,8 +1,10 @@
 import React from 'react'
+import { Menu } from '../../components/Menu'
 
 const TratamientoEmergencia = () => {
   return (
-    <div>
+    <div className='container'>
+      <Menu/>
       <h1>Pagina de tratamientos en construccion</h1>
     </div>
   )

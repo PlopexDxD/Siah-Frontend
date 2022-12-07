@@ -26,7 +26,7 @@ const MenuItem = styled.div`
     }
 `
 
-const ModalLogout = ({setModalOpen}) => {
+export const ModalUser = ({setModalOpen}) => {
   return (
     <Menu>
         <MenuItem>Profile</MenuItem>
@@ -40,4 +40,3 @@ const ModalLogout = ({setModalOpen}) => {
   )
 }
 
-export default ModalLogout

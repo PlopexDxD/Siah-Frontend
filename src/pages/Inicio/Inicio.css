@@ -1,3 +1,10 @@
+.container__inicio{
+    margin: 0 2.8125rem 0 2.8125rem;
+    
+}
+.container__background{
+    background-color: #ECEDEF;
+}
 .accordion{
     width: 100%;
 }
@@ -27,8 +34,14 @@
 h6{
     font-family: Arial, Helvetica, sans-serif;
     font-style: normal;
-    font-weight: 700;
+    font-weight: 400;
     font-size: 24px;
     line-height: 28px;
 }
-
+.accordion__title{
+    display: flex;
+    align-items: center;
+}
+.accordion__active{
+    font-weight: bold;
+}
