@@ -7,10 +7,9 @@ import { getDocumento } from "../../services/Documentos.js";
 import User from "../../components/User/User";
 import { Menu } from "../../components/Menu";
 import "./Inicio.css";
+import { CardPaciente } from "./Components/CardPaciente";
 
 const Img = styled.img`
-  width: 1.188rem;
-  height: 1.063rem;
   margin-right: 0.75rem;
   margin-left: 1.5rem;
 `;
@@ -21,7 +20,7 @@ const Inicio = () => {
     if (selected === index) {
       return setSelected(null);
     }
-    setSelected(index);
+    setSelected(index);  
   };
 
   const [post, setPost] = useState([]);
@@ -57,11 +56,8 @@ const Inicio = () => {
                 <div
                   className={selected === index ? "content show" : "content"}
                 >
-                  {/*{post.numero_factura}
-              {post.fecha_elaboracion}
-              {post.area_atencion.descripcion_area}
-              {post.persona.nombre}
-              {post.persona.apellido}*/}
+                  <CardPaciente/>
+                  <CardPaciente/>
                 </div>
               </div>
             ))}

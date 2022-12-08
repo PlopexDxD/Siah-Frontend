@@ -15,8 +15,8 @@ export const Menu = () => {
       <h2 className="title__menu">Menu</h2>
 
       <ul className="list__menu">
-        {menuList.map((element) => (
-          <li className="list__item">
+        {menuList.map((element,index) => (
+          <li className="list__item" key={index}>
             <NavLink
               key={element.to}
               to={element.to}

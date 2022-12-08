@@ -1,0 +1,42 @@
+.cardPac__container{
+    margin-top: 3px;
+}
+.cardPac__container:last-child{
+    margin-bottom: 5px;
+}
+.cardPac__containerData{
+
+    font-weight: 300;
+    display: flex;
+    gap: 25px;
+    align-items: center;
+    justify-content: space-around;
+    padding: 20px 2.5rem;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    z-index: 5;
+}
+
+.cardPac__data{
+    display: flex;
+    gap: 30px;
+    margin-bottom: 12px;
+}
+
+.cardPac__data>p{
+    font-weight: 500 ;
+}
+.cardPac_name{
+    font-weight: 400;
+}
+.cardPac__indicator{
+    height: 1rem;
+    width: 100%;
+    background-color: #2AC227;
+}
+.cardPac_cliente{
+    max-width: 300px;
+}
+.cardPac__diagnostico{
+    max-width: 80px;
+    max-height: 40px;
+}
