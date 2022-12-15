@@ -1,29 +1,30 @@
 import React from "react";
+import { getDiffFecha, getFormatDate } from "../../../../helpers/util";
+
 import "./index.css";
 
-export const CardPaciente = () => {
+export const CardPaciente = ({admision}) => {
   return (
     <article className="cardPac__container" >
       <div className="cardPac__indicator"></div>
       <div className="cardPac__containerData">
-        <div className="">
+        <div className="cardPac__persona">
           <div className="cardPac__data">
-            <p>1023199</p>
-            <p>15809747</p>
+            <p>{admision.documento.numero_factura}</p>
+            <p>{admision.documento.numero_identificacion.valor_identificacion}</p> 
           </div>
-          <p className="cardPac_name">Yoselin Carolina Flores Caraballo</p>
+          <p className="cardPac_name">{`${admision.documento.persona.nombre} ${admision.documento.persona.apellido}`}</p>
         </div>
-        <p>46 años</p>
-        <p>Femenino</p>
-        <p className="cardPac__diagnostico">Rinoplastia</p>
-        <p>Emergencia</p>
+        <p>{`${getDiffFecha(admision.documento.persona.fecha_nacimiento,'year')} años`}</p>
+        <p>{admision.documento.persona.sexo}</p>
+        <p className="cardPac__diagnostico">{admision.documento.diagnostico ? admision.documento.diagnostico : '' }</p>
+        <p className="cardPac__cama">{admision.cama.descripcion}</p>
         <div>
-          <p>05-08-2022</p>
-          <p>11:22 AM</p>
+          <p>{getFormatDate(admision.fecha_de_atencion,'YYYY-MM-DD')}</p>
+          <p>{getFormatDate(admision.fecha_de_atencion)}</p>
         </div>
         <p className="cardPac_cliente">
-          SERVICIO NACIONAL INTEGRADO DE ADMINISTRACION ADUANERA Y TRIBUTARIA
-          (SENIAT)
+          {admision.documento.nombre_cliente}
         </p>
       </div>
     </article>

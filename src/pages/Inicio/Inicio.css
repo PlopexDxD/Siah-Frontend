@@ -53,3 +53,9 @@ h6{
     font-weight: 600;
  
 }
+.accordion__images{
+    width: 1.563rem;
+     height: 1.563rem;
+     margin-right: 0.75rem;
+     margin-left: 1.5rem;
+}
