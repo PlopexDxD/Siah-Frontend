@@ -1,61 +1,102 @@
-import React, { useEffect, useState } from 'react';
-import styled from 'styled-components';
-import ArrowG from '../../assets/images/arrow-up-green.png';
-import ArrowB from '../../assets/images/arrow-down-black.png'; 
-import { PageInicioData } from '../../data/PageInicioData';
-import './Inicio.css';
-import { getDocumento } from '../../services/Documentos.js';  
-import DatosPaciente from '../ModalDatosPaciente/DatosPaciente';
+import React, { useEffect, useState } from "react";
+import styled from "styled-components";
+import ArrowG from "../../assets/images/arrow-up-green.png";
+import ArrowB from "../../assets/images/arrow-down-black.png";
 
+
+import { getDocumentosActivos } from "../../services/Documentos";
+import { getArea } from "../../services/Area";
+
+
+import User from "../../components/User/User";
+import { Menu } from "../../components/Menu";
+import { CardPaciente } from "./Components/CardPaciente";
+import { Loader } from "../../components/Loader";
+
+import "./Inicio.css";
 
 const Img = styled.img`
-    width: 1.188rem;
-    height: 1.063rem;
-    margin-right: 0.75rem;
-    margin-left: 1.5rem;
-`
+  margin-right: 0.75rem;
+  margin-left: 1.5rem;
+`;
 const Inicio = () => {
 
-  const [selected, setSelected] = useState(null)
+
+  const [selected, setSelected] = useState(null);
+  const [Areas, setAreas] = useState([]);
+  const [admisiones, setAdmisiones] = useState([]);
+  const [loader, setLoader] = useState(true);
+
+  useEffect(() => {
+    Promise.all([getArea(), getDocumentosActivos()]).then((res) => {
+      setAreas(res[0]);
+      setAdmisiones(res[1]);
+      setLoader(false)
+    });
+  }, []);
 
   const toggle = (index) => {
     if (selected === index) {
-      return setSelected(null)
+      return setSelected(null);
     }
-    setSelected(index)
-  }
+    setSelected(index);
+  };
 
-  const [post, setPost] = useState([]);
 
-  useEffect(() => {    
-    getDocumento().then((res)=>{
-      setPost(res)
-    })  
-  },[])
+  return loader ? (
+    <Loader />
+  ) : (
+    <div className="container">
+      <Menu />
+      <div className="container__background">
+        <div className="container__inicio">
+          <User />
+          <div className="accordion">
+            {Areas.map((item, index) => (
+              <div className="item" key={item.area_atencion_id}>
+                <div className="title" onClick={() => toggle(index)}>
+                  <div className="accordion__title">
+                    <img
+                      src={`./images/${item.descripcion_area}.png`}
+                      alt={item.descripcion_area}
+                      height="25.008px"
+                      width="25.008px"
+                      className="accordion__images"
+                      
+                    />
 
-  const [openModal, setOpenModal] = useState(false);
-
-  return (
-    <div className='accordion'>
-        { PageInicioData.map((item, index) => (
-          <div className='item' key={index}>
-            <div className='title' onClick={() => toggle(index)}>
-
-              <h6>{item.icon}{item.title}</h6>
-              <span>{selected === index ? <Img src={ArrowG}/> : <Img src={ArrowB}/>}</span>
-            </div>
-            <div className={selected === index ? 'content show' : 'content'} onClick={() => setOpenModal(true)}>
-              {/*{post.numero_factura}
-              {post.fecha_elaboracion}
-              {post.area_atencion.descripcion_area}
-              {post.persona.nombre}
-              {post.persona.apellido}*/}
-              <DatosPaciente  open={openModal} onClose={() => setOpenModal(false)}/>
-            </div>
+                    <h6
+                      className={selected === index ? "accordion__active" : ""}
+                    >
+                      {item.descripcion_area}
+                    </h6>
+                  </div>
+                  <span>
+                    {selected === index ? (
+                      <Img src={ArrowG} />
+                    ) : (
+                      <Img src={ArrowB} />
+                    )}
+                  </span>
+                </div>
+                <div
+                  className={selected === index ? "content show" : "content"}
+                >
+                  {admisiones.map((admision) => {
+                    return admision.area_atencion === item.area_atencion_id ? (
+                      <CardPaciente key={admision.documento.numero_factura} admision={admision} 
+                        
+                       />
+                    ) : null;
+                  })}
+                </div>
+              </div>
+            ))}
           </div>
-        ))}
+        </div>
+      </div>
     </div>
-  )
-}
+  );
+};
 
-export default Inicio
+export default Inicio;

@@ -1,0 +1,55 @@
+
+.loader___container{
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 10000;
+}
+.loader___spinner {
+    width: 100px;
+    height: 100px;
+    position: relative;
+   }
+   
+   .loader___spinner .loader___dot {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    justify-content: center;
+   }
+   
+   .loader___spinner .loader___dot::after {
+    content: "";
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background-color: rgb(54, 175, 74);
+   }
+   
+   @keyframes spin {
+    to {
+     transform: rotate(360deg);
+    }
+   }
+   
+   .loader___spinner .loader___dot {
+    animation: spin 2s infinite;
+   }
+   
+   .loader___spinner .loader___dot:nth-child(2) {
+    animation-delay: 100ms;
+   }
+   
+   .loader___spinner .loader___dot:nth-child(3) {
+    animation-delay: 200ms;
+   }
+   
+   .loader___spinner .loader___dot:nth-child(4) {
+    animation-delay: 300ms;
+   }
+   
+   .loader___spinner .loader___dot:nth-child(5) {
+    animation-delay: 400ms;
+   }
