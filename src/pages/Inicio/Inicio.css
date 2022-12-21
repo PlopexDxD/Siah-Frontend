@@ -27,11 +27,11 @@
     transform: scaleY(0);    
     transform-origin: top;
     transition: transform 0.25s ease-out;
-    /* transition: max-heigh 0.5s cubic-bezier(0,1,0,1); */
+   
 }
 .content.show{ 
     max-height: 100%;
-    /* transition: max-heigh 0.5s cubic-bezier(1,0,1,0); */
+   
     transform: scaleY(1);    
 
 }
