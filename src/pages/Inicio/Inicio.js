@@ -2,20 +2,38 @@ import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 import ArrowG from "../../assets/images/arrow-up-green.png";
 import ArrowB from "../../assets/images/arrow-down-black.png";
-import { PageInicioData } from "../../data/PageInicioData";
-import { getDocumento } from "../../services/Documentos.js";
+
+
+import { getDocumentosActivos } from "../../services/Documentos";
+import { getArea } from "../../services/Area";
+
+
 import User from "../../components/User/User";
 import { Menu } from "../../components/Menu";
+import { CardPaciente } from "./Components/CardPaciente";
+import { Loader } from "../../components/Loader";
+
 import "./Inicio.css";
 
 const Img = styled.img`
-  width: 1.188rem;
-  height: 1.063rem;
   margin-right: 0.75rem;
   margin-left: 1.5rem;
 `;
 const Inicio = () => {
+
+
   const [selected, setSelected] = useState(null);
+  const [Areas, setAreas] = useState([]);
+  const [admisiones, setAdmisiones] = useState([]);
+  const [loader, setLoader] = useState(true);
+
+  useEffect(() => {
+    Promise.all([getArea(), getDocumentosActivos()]).then((res) => {
+      setAreas(res[0]);
+      setAdmisiones(res[1]);
+      setLoader(false)
+    });
+  }, []);
 
   const toggle = (index) => {
     if (selected === index) {
@@ -24,27 +42,34 @@ const Inicio = () => {
     setSelected(index);
   };
 
-  const [post, setPost] = useState([]);
 
-  useEffect(() => {
-    getDocumento().then((res) => {
-      setPost(res);
-    });
-  }, []);
-
-  return (
+  return loader ? (
+    <Loader />
+  ) : (
     <div className="container">
       <Menu />
       <div className="container__background">
         <div className="container__inicio">
           <User />
           <div className="accordion">
-            {PageInicioData.map((item, index) => (
-              <div className="item" key={index}>
+            {Areas.map((item, index) => (
+              <div className="item" key={item.area_atencion_id}>
                 <div className="title" onClick={() => toggle(index)}>
                   <div className="accordion__title">
-                    <span>{item.icon}</span>
-                    <h6 className={selected === index ? 'accordion__active':''}>{item.title}</h6>
+                    <img
+                      src={`./images/${item.descripcion_area}.png`}
+                      alt={item.descripcion_area}
+                      height="25.008px"
+                      width="25.008px"
+                      className="accordion__images"
+                      
+                    />
+
+                    <h6
+                      className={selected === index ? "accordion__active" : ""}
+                    >
+                      {item.descripcion_area}
+                    </h6>
                   </div>
                   <span>
                     {selected === index ? (
@@ -57,11 +82,13 @@ const Inicio = () => {
                 <div
                   className={selected === index ? "content show" : "content"}
                 >
-                  {/*{post.numero_factura}
-              {post.fecha_elaboracion}
-              {post.area_atencion.descripcion_area}
-              {post.persona.nombre}
-              {post.persona.apellido}*/}
+                  {admisiones.map((admision) => {
+                    return admision.area_atencion === item.area_atencion_id ? (
+                      <CardPaciente key={admision.documento.numero_factura} admision={admision} 
+                        
+                       />
+                    ) : null;
+                  })}
                 </div>
               </div>
             ))}

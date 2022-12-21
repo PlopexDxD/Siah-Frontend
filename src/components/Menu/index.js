@@ -1,9 +1,6 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
-import { ReactComponent as Home } from "../../assets/images/home.svg";
-import { ReactComponent as Pills } from "../../assets/images/pills.svg";
-import { ReactComponent as Rotate } from "../../assets/images/rotate.svg";
-// import image from '../../assets/images/home.svg'
+import {MenuItemData} from "../../data/MenuItemData"
 import "./index.css";
 
 export const Menu = () => {
@@ -15,11 +12,11 @@ export const Menu = () => {
       <h2 className="title__menu">Menu</h2>
 
       <ul className="list__menu">
-        {menuList.map((element) => (
-          <li className="list__item">
+        {MenuItemData.map((element,index) => (
+          <li className="list__item" key={index}>
             <NavLink
-              key={element.to}
-              to={element.to}
+              key={index}
+              to={element.path}
               className={({isActive}) => (isActive ? activeClassName : '')}
               style={({ isActive }) =>
                 isActive
@@ -28,7 +25,7 @@ export const Menu = () => {
               }
               end
             >
-              {element.image}
+              {element.icon}
               <p>{element.title}</p>
             </NavLink>
           </li>
@@ -37,22 +34,3 @@ export const Menu = () => {
     </div>
   );
 };
-
-const menuList = [];
-
-menuList.push({
-  title: "Inicio",
-  to: "/",
-  image: <Home />,
-});
-
-menuList.push({
-  title: "Tratamiento de Emergencia",
-  to: "/tratamiento",
-  image: <Pills />,
-});
-menuList.push({
-  title: "Devolucion",
-  to: "/Devoluciones",
-  image: <Rotate />,
-});
