@@ -2,6 +2,8 @@ import Home from '../assets/images/home.png';
 import Pills from '../assets/images/pills.png';
 import Rotate from '../assets/images/rotate.png';
 import styled from 'styled-components';
+import Consultas from '../pages/PagesModal/Consultas';
+import Evolucion from '../pages/PagesModal/Evolucion';
 
 const Img = styled.img`
     width: 1.188rem;
@@ -12,54 +14,64 @@ const Img = styled.img`
 
 export const DatosPacienteData = [
     {
+        id: 1,
         title: "Consultas",
-        path: "/",
         icon: <Img src={Home}/>,
+        content: <Consultas/>,
     },
     {
+        id: 2,
         title: "Evolucion",
-        path: "/Evolucion",
         icon: <Img src={Pills}/>,
+        content: <Evolucion/>,
     },
     {
+        id: 3,
         title: "Signos Vitales",
-        path: "/",
-        icon: <Img src={Rotate}/>
+        icon: <Img src={Rotate}/>,
+        content: "",
     },
     {
+        id: 4,
         title: "Diagnosticos",
-        path: "/",
         icon: <Img src={Home}/>,
+        content: "",
     },
     {
+        id: 5,
         title: "Dietas",
-        path: "/",
         icon: <Img src={Pills}/>,
+        content: "",
     },
     {
+        id: 6,
         title: "Estudios y procedimientos",
-        path: "/",
-        icon: <Img src={Rotate}/>
+        icon: <Img src={Rotate}/>,
+        content: "",
     },
     {
+        id: 7,
         title: "Tratamientos recetados",
-        path: "/",
         icon: <Img src={Home}/>,
+        content: "",
     },
     {
+        id: 8,
         title: "Tratamientos pendientes",
-        path: "/",
         icon: <Img src={Pills}/>,
+        content: "",
     },
     {
+        id: 9,
         title: "Actividades de enfermeria",
-        path: "/",
-        icon: <Img src={Rotate}/>
+        icon: <Img src={Rotate}/>,
+        content: "",
     },
     {
+        id: 10,
         title: "Insumo extra",
-        path: "/",
-        icon: <Img src={Rotate}/>
+        icon: <Img src={Rotate}/>,
+        content: "",
     },
 ]
 

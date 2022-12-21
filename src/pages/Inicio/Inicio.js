@@ -5,7 +5,8 @@ import ArrowB from '../../assets/images/arrow-down-black.png';
 import { PageInicioData } from '../../data/PageInicioData';
 import './Inicio.css';
 import { getDocumento } from '../../services/Documentos.js';  
-import DatosPaciente from '../DatosPaciente/DatosPaciente';
+import DatosPaciente from '../ModalDatosPaciente/DatosPaciente';
+
 
 const Img = styled.img`
     width: 1.188rem;
@@ -32,7 +33,7 @@ const Inicio = () => {
     })  
   },[])
 
-  const [paciente, setPaciente] = useState(false);
+  const [openModal, setOpenModal] = useState(false);
 
   return (
     <div className='accordion'>
@@ -43,13 +44,13 @@ const Inicio = () => {
               <h6>{item.icon}{item.title}</h6>
               <span>{selected === index ? <Img src={ArrowG}/> : <Img src={ArrowB}/>}</span>
             </div>
-            <div className={selected === index ? 'content show' : 'content'} onClick={()=> setPaciente(true)}>
+            <div className={selected === index ? 'content show' : 'content'} onClick={() => setOpenModal(true)}>
               {/*{post.numero_factura}
               {post.fecha_elaboracion}
               {post.area_atencion.descripcion_area}
               {post.persona.nombre}
               {post.persona.apellido}*/}
-              <DatosPaciente open = {paciente} onClose = {()=>setPaciente(false)}/>
+              <DatosPaciente  open={openModal} onClose={() => setOpenModal(false)}/>
             </div>
           </div>
         ))}

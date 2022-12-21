@@ -32,10 +32,9 @@ const Consultas = () => {
         <h4>ALTA MEDICA:</h4>
         <h4>FECHA:</h4>
       </div>
-      { DatosPacienteConsultaData.map((item, index) => (
+      {DatosPacienteConsultaData.map((item, index) => (
           <div className='item' key={index}>
             <div className='title' onClick={() => toggle(index)}>
-
               <h6>{item.icon}{item.title}</h6>
               <span>{selected === index ? <Img src={ArrowG}/> : <Img src={ArrowB}/>}</span>
             </div>
